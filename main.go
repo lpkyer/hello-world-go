@@ -1,20 +1,18 @@
 package main
 
 import (
-	"log"
-	"time"
+	"fmt"
+	"net/http"
 )
 
-type myStruc
-
-type User struct {
-	FirstName   string
-	LastName    string
-	PhoneNumber string
-	Age         int
-	BirthDate   time.Time
-}
-
 func main() {
-	user := User{
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		n, err := fmt.Fprintf(w, "Hello, world!")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(fmt.Sprintf("Bytes written %d", n))
+
+	})
+
 }
